@@ -31,7 +31,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y autoconf automake clang libaec-dev \
+        sudo apt-get install -y autoconf automake clang guile-3.0-dev libaec-dev \
           libfftw3-dev libgdsii-dev libgsl-dev libharminv-dev libhdf5-dev \
           libtool mpb mpb-dev
     - name: Checkout libctl repository
