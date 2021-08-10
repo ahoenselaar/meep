@@ -53,7 +53,9 @@ jobs:
     - name: configure
       run: |
         ./configure \
-          --with-hdf5 --without-mpi --without-python --without-scheme \
+          --with-hdf5 \
+          --with-libctl=${HOME}/local/share/libctl \
+          --without-mpi --without-python --without-scheme \
           --enable-shared --enable-maintainer-mode \
           CXXFLAGS="-fsanitize=${{ matrix.sanitizer }} ${{ matrix.debug-options }}" \
           LDFLAGS="-fsanitize=${{ matrix.sanitizer }}" \
