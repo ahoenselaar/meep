@@ -31,9 +31,16 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y autoconf automake clang libaec-dev libctl-dev \
+        sudo apt-get install -y autoconf automake clang libaec-dev \
           libfftw3-dev libgdsii-dev libgsl-dev libharminv-dev libhdf5-dev \
           libtool mpb mpb-dev
+    - name: Checkout libctl repository
+      uses: actions/checkout@v2
+      with:
+        repository: NanoComp/libctl
+        path: libctl-src
+    - name: Build and install libctl
+      run: cd libctl-src && sh autogen.sh --prefix=${HOME}/local --enable-shared && make -j $(nproc) && make install
     - name: Check out repository
       uses: actions/checkout@v2
     - name: Autoreconf
