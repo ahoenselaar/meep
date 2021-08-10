@@ -39,6 +39,11 @@ jobs:
       with:
         repository: NanoComp/libctl
         path: libctl-src
+    - name: Define common environment variables
+      run: |
+        echo "CPPFLAGS=-I${HOME}/local/include" >> $GITHUB_ENV
+        echo "LDFLAGS=-L${HOME}/local/lib" >> $GITHUB_ENV
+        echo "GEN_CTL_IO=${HOME}/local/bin/gen-ctl-io" >> $GITHUB_ENV
     - name: Build and install libctl
       run: cd libctl-src && sh autogen.sh --prefix=${HOME}/local --enable-shared && make -j $(nproc) && make install
     - name: Check out repository
